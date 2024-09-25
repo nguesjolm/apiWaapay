@@ -185,6 +185,7 @@ use App\Models\Daypay;
                                 'message'=>"Une erreur s'est produite, veuillez ressayer plutard",
                                 'data'=> '',
                                 'error'=> '',
+                                'result' => $res
                             ],200);
         
         }

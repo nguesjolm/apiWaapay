@@ -309,26 +309,27 @@ class AdminController extends Controller
 
                  //Lancement de CinetPay pour le transfert
                  $res = Payout($transfert_id,$payment_phone,$montant,$nom,$email,$type,$payment_method,$profil_id);
+                 return $res;
                  //check state payment
-                 if($res['statusCode']==200){
-                        //save transaction
-                        PayoutUser::firstOrCreate([
-                            'nom'=>$nom,
-                            'prenom' => $prenom,
-                            'tel' => $tel,
-                            'montant' => $montant,
-                            'datepay'=>$datepay,
-                            'heure'=> $heure,
-                            'trans_id'=>$transfert_id
-                        ]);
-                        //Mise à jour du solde
-                        $solde_user = Superadminsolde::firstWhere('idsuperAdmin',1)->solde;
-                        $new_solde = $solde_user - $montant;
-                        Superadminsolde::where('idsuperAdmin',1)->update(['solde'=>$new_solde]);
-                        return $res;
-                 }else{
-                    return $res;
-                 }
+                //  if($res['statusCode']==200){
+                //         //save transaction
+                //         PayoutUser::firstOrCreate([
+                //             'nom'=>$nom,
+                //             'prenom' => $prenom,
+                //             'tel' => $tel,
+                //             'montant' => $montant,
+                //             'datepay'=>$datepay,
+                //             'heure'=> $heure,
+                //             'trans_id'=>$transfert_id
+                //         ]);
+                //         //Mise à jour du solde
+                //         $solde_user = Superadminsolde::firstWhere('idsuperAdmin',1)->solde;
+                //         $new_solde = $solde_user - $montant;
+                //         Superadminsolde::where('idsuperAdmin',1)->update(['solde'=>$new_solde]);
+                //         return $res;
+                //  }else{
+                //     return $res;
+                //  }
                 }
                
 
